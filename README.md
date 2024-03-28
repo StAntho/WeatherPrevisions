@@ -22,6 +22,12 @@
 
 ## Installation
 
+Install all dependencies
+
+```sh
+pip install -r requirements.txt
+```
+
 Run `main.ipynb`
 
 ## Run Locally
