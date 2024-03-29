@@ -16,9 +16,13 @@
 
 - [Pyhton](https://www.python.org/)
 - [matplotlib](https://matplotlib.org/)
+- [numpy](https://numpy.org/)
 - [pandas](https://pandas.pydata.org/)
 - [sklearn](https://scikit-learn.org/)
+- [seaborn](https://seaborn.pydata.org/)
+- [statsmodels](https://www.statsmodels.org/stable/index.html)
 - [Streamlit](https://streamlit.io/)
+- [pickle](https://docs.python.org/3/library/pickle.html)
 
 ## Installation
 
@@ -28,7 +32,7 @@ Install all dependencies
 pip install -r requirements.txt
 ```
 
-Run `main.ipynb`
+Run `classification.ipynb` and `time_series.ipynb`
 
 ## Run Locally
 
