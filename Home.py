@@ -24,17 +24,19 @@ for i in range(7):
     today = today + datetime.timedelta(days=1)
     dates.append(today)
     index.append(i)
-st.write(dates)
+# st.write(dates)
 
 # Prédictions
 st.write("## Prédictions") 
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 cols = [col1, col2, col3, col4, col5, col6, col7]
-# st.write("<table> <tr> <th>Température</th> <th>Humidité</th> <th>Pression</th> <th>Vent moyen</th> </tr> <tr> <td>12.0</td> <td>80.0</td> <td>1000.0</td> <td>30.0</td> </tr> <tr> <td>12.0</td> <td>80.0</td> <td>1000.0</td> <td>30.0</td> </tr> <tr> <td>12.0</td> <td>80.0</td> <td>1000.0</td> <td>30.0</td> </tr> <tr> <td>12.0</td> <td>80.0</td> <td>1000.0</td> <td>30.0</td> </tr> <tr> <td>12.0</td> <td>80.0</td> <td>1000.0</td> <td>30.0</td> </tr> <tr> <td>12.0</td> <td>80.0</td> <td>1000.0</td> <td>30.0</td> </tr> <tr> <td>12.0</td> <td>80.0</td> <td>1000.0</td> <td>30.0</td> </tr> </table>", unsafe_allow_html=True)
-for index, dates, temperature_prediction, humidite_prediction, pression_prediction, vent_moyen_prediction in zip(index, dates, temperature_prediction(), humidite_prediction(), pression_prediction(), vent_moyen_prediction()):
-    with cols[index]:
-        st.write(dates)
-        st.write(temperature_prediction)
-        st.write(index, dates, temperature_prediction, humidite_prediction, pression_prediction, vent_moyen_prediction)
-        src, width, height = model_classification(temperature_prediction, pression_prediction, humidite_prediction, vent_moyen_prediction)
-        pred = st.components.v1.iframe(src, width, height, scrolling=False)
+for i, (date, temp_pred, humid_pred, press_pred, vent_pred, vent_direction) in enumerate(zip(dates, temperature_prediction(), humidite_prediction(), pression_prediction(), vent_moyen_prediction(), vent_direction_prediction())):
+    with cols[i]:
+        src, width, height = model_classification(temp_pred, press_pred, humid_pred, vent_pred)
+        st.components.v1.iframe(src, width, height, scrolling=False)
+        st.markdown(f"#### Date: {date.strftime('%A %d %B %Y')}")
+        st.markdown(f"**Température:** {round(temp_pred,2)} °C")
+        st.markdown(f"**Humidité:** {round(humid_pred, 2)} %")
+        st.markdown(f"**Pression:** {round(press_pred, 2)} hPa")
+        st.markdown(f"**Vent:** {round(vent_pred, 2)} km/h")
+        st.markdown(f"**Direction:** {degre_vers_direction(vent_direction)}")
