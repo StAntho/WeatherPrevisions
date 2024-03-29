@@ -1,6 +1,10 @@
 import pickle
 import numpy as np
 
+def temperature_prediction():
+    temperature = pickle.load(open("./models/temperature_model.pickle", "rb"))
+    return temperature.forecast(7)
+
 def model_classification(temperature, pression, humidite, vent_moyen):
     classif = pickle.load(open("./models/classification_model.pickle", "rb"))
     parameters = np.array([[temperature, pression, humidite, vent_moyen]])
@@ -14,5 +18,5 @@ def model_classification(temperature, pression, humidite, vent_moyen):
         return show   
     
     show = ["https://giphy.com/embed/qhO10687JYjl4CsPyE", 480, 282]
-    # show = '<iframe src="https://giphy.com/embed/qhO10687JYjl4CsPyE" width="480" height="282" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/summer-sun-sunshine-qhO10687JYjl4CsPyE">via GIPHY</a></p>'
     return show
+
